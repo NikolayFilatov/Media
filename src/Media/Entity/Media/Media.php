@@ -58,7 +58,7 @@ class Media extends AbstractEntityBase
         // populate instance with provided data
         return parent::__construct($data);
     }
-
+//
 //    public function addItem(\Media\Entity\Item\Item $item)
 //    {
 //        $item->setAlbum($this);

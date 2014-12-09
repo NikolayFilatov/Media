@@ -3,7 +3,7 @@
 /**
  * @namespace
  */
-namespace Media\Entity\Media;
+namespace Media\Entity\PhotoStorage;
 
 use Base\Service\AbstractDefaultService;
 
@@ -12,11 +12,11 @@ use Base\Service\AbstractDefaultService;
  * @category    Alt
  * @package     Media
  */
-class MediaService extends AbstractDefaultService
+class PhotoStorageService extends AbstractDefaultService
 {
     /**
      * Repository instance.
-     * @var \Media\Entity\Media\MediaRepository
+     * @var \Media\Entity\PhotoStorage\PhotoStorageRepository
      */
     protected $repository;
 
@@ -40,7 +40,7 @@ class MediaService extends AbstractDefaultService
     {
         if($this->repository == null)
             $this->setRepository($this->getEntityManager()
-                 ->getRepository('Media\Entity\Media\Media'));
+                ->getRepository('Media\Entity\PhotoStorage\PhotoStorage'));
 
         return $this->repository;
     }
@@ -56,14 +56,14 @@ class MediaService extends AbstractDefaultService
 
     /**
      * @param $data
-     * @return \Media\Entity\Media\Media
+     * @return \Media\Entity\PhotoStorage\PhotoStorage
      */
-    public function createMedia($data)
+    public function createPhotoStorage($data)
     {
-        $media = $this->getServiceLocator()->get('Media\Entity\Media\Media');
-        $media->setData($data);
+        $photoStorage = $this->getServiceLocator()->get('Media\Entity\PhotoStorage\PhotoStorage');
+        $photoStorage->setData($data);
 
-        return $media;
+        return $photoStorage;
     }
 
 } //end class here

@@ -3,20 +3,19 @@
 /**
  * @namespace
  */
-namespace Media\Entity\PhotoStorage;
+namespace Media\Entity\Photo;
 
 use Base\Entity\AbstractEntityBase;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="Media\Entity\PhotoStorage\PhotoStorageRepository")
- * @ORM\Table(name="alt_photo_storage", options={"collate"="utf8_general_ci"})
+ * @ORM\Table(name="alt_photo", options={"collate"="utf8_general_ci"})
  *
  * @category    Media
  * @package     Alt
  */
-class PhotoStorage extends AbstractEntityBase
+class Photo extends AbstractEntityBase
 {
     /**
      * Protected entity properties
@@ -51,41 +50,33 @@ class PhotoStorage extends AbstractEntityBase
     protected $private = 0;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media\Entity\Photo\Photo")
-     * @var \Media\Entity\Photo\Photo
+     * @ORM\ManyToOne(
+     *      targetEntity="Media\Entity\PhotoStorage\PhotoStorage",
+     *      inversedBy="items"
+     * )
+     * @var \Media\Entity\PhotoStorage\PhotoStorage
      */
-    protected $cover;
+    protected $storage;
 
     /**
-     * @ORM\OneToMany(
-     *      targetEntity="Media\Entity\Photo\Photo",
-     *      mappedBy="storage",
-     *      cascade={"persist", "remove"}
-     * )
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @ORM\ManyToOne(targetEntity="Media\Entity\Media\Media")
+     *
+     * @var \Media\Entity\Media\Media
      */
-    protected $items;
+    protected $media;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @var int
+     */
+    protected $author;
 
     /**
      * @param null $data
      */
     public function __construct($data = null)
     {
-        $this->items = new ArrayCollection();
-
         // populate instance with provided data
         return parent::__construct($data);
-    }
-
-    /**
-     * @param \Media\Entity\Photo\Photo $item
-     * @return $this
-     */
-    public function addItem(\Media\Entity\Photo\Photo $item)
-    {
-        $item->setStorage($this);
-        $this->items->add($item);
-
-        return $this;
     }
 }
