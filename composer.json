@@ -1,9 +1,9 @@
 {
-    "name":         "alt/album",
-    "description":  "Album module for manipulation pictures",
+    "name":         "alt/media",
+    "description":  "Media module for manipulation data storage",
     "type":         "library",
     "license" :     "MIT",
-    "homepage":     "https://github.com/neiron486k/Album.git",
+    "homepage":     "https://github.com/neiron486k/Media.git",
     "keywords": [
         "zf2",
         "album",
@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Album\\": "src/Album"
+            "Media\\": "src/Media"
         },
         "classmap": [
             "./Module.php"
