@@ -1,0 +1,55 @@
+[
+    {
+        "name": "alt/base",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/neiron486k/Base.git",
+            "reference": "cec98d4c274e6af8ae2e3d198244a43fcce43f7c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/neiron486k/Base/zipball/cec98d4c274e6af8ae2e3d198244a43fcce43f7c",
+            "reference": "cec98d4c274e6af8ae2e3d198244a43fcce43f7c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.13"
+        },
+        "time": "2014-12-08 12:14:30",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Base\\": "src/Base"
+            },
+            "classmap": [
+                "./Module.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Astafiev Alexey",
+                "email": "efsneiron@gmail.com",
+                "role": "developer"
+            }
+        ],
+        "description": "Base module",
+        "homepage": "https://github.com/neiron486k/Base.git",
+        "keywords": [
+            "base",
+            "module",
+            "zf2"
+        ]
+    }
+]

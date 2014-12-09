@@ -6,7 +6,7 @@
     "homepage":     "https://github.com/neiron486k/Media.git",
     "keywords": [
         "zf2",
-        "album",
+        "media",
         "module"
     ],
     "authors": [
@@ -18,7 +18,8 @@
     ],
     "require": {
         "php": ">=5.4.13",
-        "alt/base": "dev-master"
+        "alt/base":     "dev-master",
+        "alt/media":    "dev-master"
     },
      "extra": {
         "branch-alias": {
