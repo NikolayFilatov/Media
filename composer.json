@@ -1,0 +1,36 @@
+{
+    "name":         "alt/album",
+    "description":  "Album module for manipulation pictures",
+    "type":         "library",
+    "license" :     "MIT",
+    "homepage":     "https://github.com/neiron486k/Album.git",
+    "keywords": [
+        "zf2",
+        "album",
+        "module"
+    ],
+    "authors": [
+        {
+            "name":      "Nikolay Filatov",
+            "email":     "2519483@gmail.com",
+            "role":      "developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.13",
+        "alt/base": "dev-master"
+    },
+     "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Album\\": "src/Album"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
