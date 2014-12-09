@@ -1,5 +1,5 @@
 <?php
-namespace Album;
+namespace Media;
 
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
