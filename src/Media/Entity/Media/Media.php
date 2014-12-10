@@ -8,6 +8,7 @@ namespace Media\Entity\Media;
 use Base\Entity\AbstractEntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Media\Entity\PhotoStorage\PhotoStorage;
 
 /**
  * @ORM\Entity(repositoryClass="Media\Entity\Media\MediaRepository")
@@ -38,32 +39,51 @@ class Media extends AbstractEntityBase
      */
     protected $name = '';
 
-//    /**
-//     * @ORM\OneToMany(
-//     *      targetEntity="Album\Entity\Item\Item",
-//     *      mappedBy="album",
-//     *      cascade={"persist", "remove"}
-//     * )
-//     * @var \Doctrine\Common\Collections\ArrayCollection
-//     */
-//    protected $items;
+    /**
+     * @ORM\Column(type="string", length=1024)
+     * @var string
+     */
+    protected $description = '';
+
+    /**
+     * @ORM\OneToMany(
+     *      targetEntity="Media\Entity\PhotoStorage\PhotoStorage",
+     *      mappedBy="parent_media",
+     *      cascade={"persist", "remove"}
+     * )
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $photoStorage;
 
     /**
      * @param null $data
      */
     public function __construct($data = null)
     {
-//        $this->items = new ArrayCollection();
-
-        // populate instance with provided data
         return parent::__construct($data);
     }
-//
-//    public function addItem(\Media\Entity\Item\Item $item)
-//    {
-//        $item->setAlbum($this);
-//        $this->items->add($item);
-//        return $this;
-//    }
+
+    /**
+     * @param PhotoStorage $photoStorage
+     * @return $this
+     */
+    public function addPhotoStorage(PhotoStorage $photoStorage)
+    {
+        $photoStorage->setMedia($this);
+        $this->photoStorage->add($photoStorage);
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'description'   => $this->description,
+        ];
+    }
 
 } //class ends here

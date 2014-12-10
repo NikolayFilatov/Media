@@ -11,8 +11,20 @@ return [
             return $cache;
         },
         'Media\Entity\Media\MediaService'   => function ($sm) {
-            $service = new \Media\Entity\Media\MediaService($sm);
-//            $service->setServiceLocator($sm);
+            $service = new \Media\Entity\Media\MediaService();
+            $service->setServiceLocator($sm);
+
+            return $service;
+        },
+        'Media\Entity\PhotoStorage\PhotoStorageService'   => function ($sm) {
+            $service = new \Media\Entity\PhotoStorage\PhotoStorageService();
+            $service->setServiceLocator($sm);
+
+            return $service;
+        },
+        'Media\Entity\Photo\PhotoService'   => function ($sm) {
+            $service = new \Media\Entity\Photo\PhotoService();
+            $service->setServiceLocator($sm);
 
             return $service;
         },

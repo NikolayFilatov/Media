@@ -50,6 +50,12 @@ class Photo extends AbstractEntityBase
     protected $private = 0;
 
     /**
+     * @ORM\Column(type="string", length=128)
+     * @var string
+     */
+    protected  $path;
+
+    /**
      * @ORM\ManyToOne(
      *      targetEntity="Media\Entity\PhotoStorage\PhotoStorage",
      *      inversedBy="items"
@@ -78,5 +84,32 @@ class Photo extends AbstractEntityBase
     {
         // populate instance with provided data
         return parent::__construct($data);
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'description'   => $this->description,
+            'private'       => $this->private,
+            'storage_id'    => $this->storage->getId(),
+            'media'         => $this->getMeadiaId(),
+            'author_id'     => $this->author,
+        ];
+    }
+
+    /**
+     * @return null
+     */
+    public function getMediaId()
+    {
+        if($this->media)
+            return $this->media->getId();
+
+        return null;
     }
 }

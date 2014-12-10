@@ -26,11 +26,6 @@ class PhotoService extends AbstractDefaultService
     protected $locator;
 
 
-    public function __construct(ServiceManager $locator)
-    {
-        $this->locator = $locator;
-    }
-
     /**
      * Function for get repository
      *
@@ -52,6 +47,17 @@ class PhotoService extends AbstractDefaultService
     public function setRepository(\Base\Service\AbstractDefaultRepository $repository)
     {
         $this->repository = $repository;
+    }
+
+    /**
+     * @param Photo $photo
+     * @param bool $flush
+     * @return $this
+     */
+    public function savePhoto(Photo $photo, $flush = true)
+    {
+        $this->getRepository()->save($photo, $flush);
+        return $this;
     }
 
     /**

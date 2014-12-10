@@ -25,12 +25,6 @@ class MediaService extends AbstractDefaultService
      */
     protected $locator;
 
-
-    public function __construct(ServiceManager $locator)
-    {
-        $this->locator = $locator;
-    }
-
     /**
      * Function for get repository
      *
@@ -55,6 +49,17 @@ class MediaService extends AbstractDefaultService
     }
 
     /**
+     * @param Media $media
+     * @param bool $flush
+     * @return $this
+     */
+    public function saveMedia(Media $media, $flush = true)
+    {
+        $this->getRepository()->save($media, $flush);
+        return $this;
+    }
+
+    /**
      * @param $data
      * @return \Media\Entity\Media\Media
      */
@@ -64,6 +69,21 @@ class MediaService extends AbstractDefaultService
         $media->setData($data);
 
         return $media;
+    }
+
+    /**
+     * @param $data
+     * @return \Media\Entity\PhotoStorage\PhotoStorage
+     */
+    public function createPhotoStorage($data)
+    {
+        /**
+         * @var $psService \Media\Entity\PhotoStorage\PhotoStorageService
+         */
+        $psService = $this->getServiceLocator()->get('Media\Entity\PhotoStorage\PhotoStorageService');
+        $ps = $psService->createPhotoStorage($data);
+
+        return $ps;
     }
 
 } //end class here

@@ -67,6 +67,15 @@ class PhotoStorage extends AbstractEntityBase
     protected $items;
 
     /**
+     * @ORM\ManyToOne(
+     *      targetEntity="Media\Entity\Media\Media",
+     *      inversedBy="photoStorage"
+     * )
+     * @var \Media\Entity\Media\Media
+     */
+    protected $media;
+
+    /**
      * @param null $data
      */
     public function __construct($data = null)
@@ -87,5 +96,26 @@ class PhotoStorage extends AbstractEntityBase
         $this->items->add($item);
 
         return $this;
+    }
+
+    public function getCoverArray()
+    {
+        if($this->cover)
+            return $this->cover->toArray();
+
+        return [];
+    }
+
+    public function toArray()
+    {
+        return [
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'description'   => $this->description,
+            'private'       => $this->private,
+            'cover'         => $this->getCoverArray(),
+            'countItems'    => count($this->items),
+            'media_id'      => $this->media->getId(),
+        ];
     }
 }
