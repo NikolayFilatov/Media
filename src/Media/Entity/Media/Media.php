@@ -43,15 +43,16 @@ class Media extends AbstractEntityBase
      */
     protected $photoStorage;
 
-    /**
-     * @ORM\OneToMany(
-     *      targetEntity="Media\Entity\Message\Message",
-     *      mappedBy="media",
-     *      cascade={"persist", "remove"}
-     * )
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    protected $messages;
+//    /**
+//     * @ORM\OneToMany(
+//     *      targetEntity="Media\Entity\Message\Message",
+//     *      mappedBy="media",
+//     *      cascade={"persist", "remove"}
+//     * )
+//     * @var \Doctrine\Common\Collections\ArrayCollection
+//     */
+//    protected $messages;
+
 
     /**
      * @param null $data
@@ -99,20 +100,22 @@ class Media extends AbstractEntityBase
         return $ret;
     }
 
+    /**
+     * @return ArrayCollection
+     */
     public function getPhotoStorage()
     {
         return $this->photoStorage;
     }
 
     /**
-     * @param \Media\Entity\Message\Message $message
+     * @param $message
      * @return $this
      */
-    public function addMessage(\Media\Entity\Message\Message $message)
+    public function addMessage($message)
     {
         $message->setMedia($this);
         $this->messages->add($message);
-
         return $this;
     }
 

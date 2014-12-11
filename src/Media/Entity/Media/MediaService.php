@@ -52,9 +52,9 @@ class MediaService extends AbstractDefaultService
      * @param Media $media
      * @return Media
      */
-    public function saveMedia(\Media\Entity\Media\Media $media)
+    public function saveMedia(\Media\Entity\Media\Media $media, $flush = true)
     {
-        $this->getRepository()->save($media);
+        $this->getRepository()->save($media, $flush);
         return $media;
     }
 

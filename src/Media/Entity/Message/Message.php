@@ -6,8 +6,9 @@
 namespace Media\Entity\Message;
 
 use Base\Entity\AbstractEntityBase;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use DateTimeZone;
 
 /**
  * @ORM\Entity(repositoryClass="Media\Entity\Message\MessageRepository")
@@ -39,25 +40,28 @@ class Message extends AbstractEntityBase
     protected $message;
 
     /**
-     * @ORM\Column(type="integer")
-     * @var string
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var datetime
      */
-    protected $author;
+    protected $date;
 
-    /**
-     * @ORM\ManyToOne(
-     *      targetEntity="Media\Entity\Media\Media",
-     *      inversedBy="messages"
-     * )
-     * @var \Media\Entity\Media\Media
-     */
-    protected $media;
+//    /**
+//     * @ORM\ManyToOne(
+//     *      targetEntity="Media\Entity\Media\Media",
+//     *      inversedBy="messages"
+//     * )
+//     * @var \Media\Entity\Media\Media
+//     */
+//    protected $media;
+
 
     /**
      * @param null $data
      */
     public function __construct($data = null)
     {
+        $this->date = new DateTime('now', new \DateTimeZone('MSK'));
+
         return parent::__construct($data);
     }
 
@@ -69,8 +73,8 @@ class Message extends AbstractEntityBase
         return [
             'id'            => $this->id,
             'message'       => $this->message,
-            'author_id'     => $this->author,
             'media_id'      => $this->media->getId(),
+            'date'          => $this->date->format('d.m.Y'),
         ];
     }
 }
