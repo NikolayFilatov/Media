@@ -121,6 +121,9 @@ class PhotoStorage extends AbstractEntityBase
         return $ret;
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return [

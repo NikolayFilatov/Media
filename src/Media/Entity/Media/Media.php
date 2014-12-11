@@ -44,11 +44,23 @@ class Media extends AbstractEntityBase
     protected $photoStorage;
 
     /**
+     * @ORM\OneToMany(
+     *      targetEntity="Media\Entity\Message\Message",
+     *      mappedBy="media",
+     *      cascade={"persist", "remove"}
+     * )
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $messages;
+
+    /**
      * @param null $data
      */
     public function __construct($data = null)
     {
         $this->photoStorage = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+
         return parent::__construct($data);
     }
 
@@ -63,6 +75,9 @@ class Media extends AbstractEntityBase
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getPhotoStorageArray()
     {
         $ret = [];
@@ -75,11 +90,36 @@ class Media extends AbstractEntityBase
     /**
      * @return array
      */
+    public function getMessagesArray()
+    {
+        $ret = [];
+        foreach($this->messages as $message)
+            $ret[] = $message->toArray();
+
+        return $ret;
+    }
+
+    /**
+     * @param \Media\Entity\Message\Message $message
+     * @return $this
+     */
+    public function addMessage(\Media\Entity\Message\Message $message)
+    {
+        $message->setMedia($this);
+        $this->messages->add($message);
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return [
             'id'            => $this->id,
             'photoStorage'  => $this->getPhotoStorageArray(),
+            'messages'      => $this->getMessagesArray(),
         ];
     }
 
