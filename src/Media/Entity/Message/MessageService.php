@@ -61,6 +61,17 @@ class MessageService extends AbstractDefaultService
     }
 
     /**
+     * @param Message $message
+     * @param bool $flush
+     * @return $this
+     */
+    public function removeMessage(\Media\Entity\Message\Message $message, $flush = true)
+    {
+        $this->getRepository()->remove($message, $flush);
+        return $this;
+    }
+
+    /**
      * @param $data
      * @return \Media\Entity\Message\Message
      */

@@ -71,4 +71,16 @@ class MediaService extends AbstractDefaultService
         return $media;
     }
 
+    /**
+     * @param $entity
+     * @return Media
+     */
+    public function addMediaToEntity($entity)
+    {
+        $media = $this->createMedia();
+        $entity->setMedia($media);
+
+        return $media;
+    }
+
 } //end class here

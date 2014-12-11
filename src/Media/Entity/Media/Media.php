@@ -99,6 +99,11 @@ class Media extends AbstractEntityBase
         return $ret;
     }
 
+    public function getPhotoStorage()
+    {
+        return $this->photoStorage;
+    }
+
     /**
      * @param \Media\Entity\Message\Message $message
      * @return $this

@@ -53,10 +53,29 @@ class PhotoStorageService extends AbstractDefaultService
      * @param bool $flush
      * @return $this
      */
-    public function savePhotoStorage(\Media\Entity\PhotoStorage\PhotoStorage $ps, $flush = true)
+    public function savePhotoStorage(
+        \Media\Entity\PhotoStorage\PhotoStorage $photoStorage, $flush = true)
     {
-        $this->getRepository()->save($ps, $flush);
-        return $ps;
+        $this->getRepository()->save($photoStorage, $flush);
+        return $photoStorage;
+    }
+
+    /**
+     * @param PhotoStorage $ps
+     * @param bool $flush
+     * @return $this
+     */
+    public function removePhotoStorage(
+        \Media\Entity\PhotoStorage\PhotoStorage $ps, $flush = true)
+    {
+        $cover = $ps->getCover();
+        $cover->setPhotoStorage(null);
+        $ps->setCover(null);
+
+        $this->savePhotoStorage($ps);
+
+        $this->getRepository()->remove($ps, $flush);
+        return $this;
     }
 
     /**

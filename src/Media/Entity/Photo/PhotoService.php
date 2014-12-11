@@ -61,6 +61,17 @@ class PhotoService extends AbstractDefaultService
     }
 
     /**
+     * @param Photo $photo
+     * @param bool $flush
+     * @return $this
+     */
+    public function removePhoto(\Media\Entity\Photo\Photo $photo, $flush = true)
+    {
+        $this->getRepository()->remove($photo, $flush);
+        return $this;
+    }
+
+    /**
      * @param $data
      * @return \Media\Entity\Photo\Photo
      */
