@@ -34,21 +34,9 @@ class Media extends AbstractEntityBase
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
-     * @var string
-     */
-    protected $name = '';
-
-    /**
-     * @ORM\Column(type="string", length=1024)
-     * @var string
-     */
-    protected $description = '';
-
-    /**
      * @ORM\OneToMany(
      *      targetEntity="Media\Entity\PhotoStorage\PhotoStorage",
-     *      mappedBy="parent_media",
+     *      mappedBy="media",
      *      cascade={"persist", "remove"}
      * )
      * @var \Doctrine\Common\Collections\ArrayCollection
@@ -60,6 +48,7 @@ class Media extends AbstractEntityBase
      */
     public function __construct($data = null)
     {
+        $this->photoStorage = new ArrayCollection();
         return parent::__construct($data);
     }
 
@@ -67,11 +56,20 @@ class Media extends AbstractEntityBase
      * @param PhotoStorage $photoStorage
      * @return $this
      */
-    public function addPhotoStorage(PhotoStorage $photoStorage)
+    public function addPhotoStorage(\Media\Entity\PhotoStorage\PhotoStorage $photoStorage)
     {
         $photoStorage->setMedia($this);
         $this->photoStorage->add($photoStorage);
         return $this;
+    }
+
+    public function getPhotoStorageArray()
+    {
+        $ret = [];
+        foreach($this->photoStorage as $ps)
+            $ret[] = $ps->toArray();
+
+        return $ret;
     }
 
     /**
@@ -81,8 +79,7 @@ class Media extends AbstractEntityBase
     {
         return [
             'id'            => $this->id,
-            'name'          => $this->name,
-            'description'   => $this->description,
+            'photoStorage'  => $this->getPhotoStorageArray(),
         ];
     }
 

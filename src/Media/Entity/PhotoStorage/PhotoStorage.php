@@ -33,16 +33,16 @@ class PhotoStorage extends AbstractEntityBase
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      * @var string
      */
-    protected $name = '';
+    protected $name;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      * @var string
      */
-    protected $description = '';
+    protected $description;
 
     /**
      * @ORM\Column(type="integer")
@@ -98,12 +98,27 @@ class PhotoStorage extends AbstractEntityBase
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getCoverArray()
     {
         if($this->cover)
             return $this->cover->toArray();
 
         return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getItemsArray()
+    {
+        $ret = [];
+        foreach($this->items as $item)
+            $ret[] = $item->toArray();
+
+        return $ret;
     }
 
     public function toArray()
@@ -114,7 +129,7 @@ class PhotoStorage extends AbstractEntityBase
             'description'   => $this->description,
             'private'       => $this->private,
             'cover'         => $this->getCoverArray(),
-            'countItems'    => count($this->items),
+            'items'         => $this->getItemsArray(),
             'media_id'      => $this->media->getId(),
         ];
     }

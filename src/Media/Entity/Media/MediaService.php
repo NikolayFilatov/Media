@@ -34,7 +34,7 @@ class MediaService extends AbstractDefaultService
     {
         if($this->repository == null)
             $this->setRepository($this->getEntityManager()
-                 ->getRepository('Media\Entity\Media\Media'));
+                 ->getRepository('\Media\Entity\Media\Media'));
 
         return $this->repository;
     }
@@ -50,40 +50,25 @@ class MediaService extends AbstractDefaultService
 
     /**
      * @param Media $media
-     * @param bool $flush
-     * @return $this
+     * @return Media
      */
-    public function saveMedia(Media $media, $flush = true)
+    public function saveMedia(\Media\Entity\Media\Media $media)
     {
-        $this->getRepository()->save($media, $flush);
-        return $this;
+        $this->getRepository()->save($media);
+        return $media;
     }
 
     /**
      * @param $data
      * @return \Media\Entity\Media\Media
      */
-    public function createMedia($data)
+    public function createMedia($data = null)
     {
-        $media = $this->getServiceLocator()->get('Media\Entity\Media\Media');
-        $media->setData($data);
+        $media = $this->getServiceLocator()->get('\Media\Entity\Media\Media');
+        $media_namespace = get_class($media);
+        $media = new $media_namespace($data);
 
         return $media;
-    }
-
-    /**
-     * @param $data
-     * @return \Media\Entity\PhotoStorage\PhotoStorage
-     */
-    public function createPhotoStorage($data)
-    {
-        /**
-         * @var $psService \Media\Entity\PhotoStorage\PhotoStorageService
-         */
-        $psService = $this->getServiceLocator()->get('Media\Entity\PhotoStorage\PhotoStorageService');
-        $ps = $psService->createPhotoStorage($data);
-
-        return $ps;
     }
 
 } //end class here

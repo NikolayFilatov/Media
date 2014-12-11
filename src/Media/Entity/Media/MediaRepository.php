@@ -22,7 +22,7 @@ class MediaRepository extends AbstractDefaultRepository {
         $this->_em->persist($entity);
 
         if($flush)
-            $this->_em->flush($entity);
+            $this->_em->flush();
 
         return $entity;
     }
@@ -39,7 +39,7 @@ class MediaRepository extends AbstractDefaultRepository {
         $this->_em->remove($entity);
 
         if($flush)
-            $this->_em->flush($entity);
+            $this->_em->flush();
 
         return $this;
     }

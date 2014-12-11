@@ -54,10 +54,10 @@ class PhotoService extends AbstractDefaultService
      * @param bool $flush
      * @return $this
      */
-    public function savePhoto(Photo $photo, $flush = true)
+    public function savePhoto(\Media\Entity\Photo\Photo $photo, $flush = true)
     {
         $this->getRepository()->save($photo, $flush);
-        return $this;
+        return $photo;
     }
 
     /**
@@ -67,9 +67,10 @@ class PhotoService extends AbstractDefaultService
     public function createPhoto($data)
     {
         $photo = $this->getServiceLocator()->get('Media\Entity\Photo\Photo');
-        $photo->setData($data);
+        $photo_namespace = get_class($photo);
+        $photo = new $photo_namespace($data);
 
-        return $photo;
+        return $this->savePhoto($photo);
     }
 
 } //end class here

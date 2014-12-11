@@ -32,28 +32,22 @@ class Photo extends AbstractEntityBase
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      * @var string
      */
-    protected $name = '';
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     * @var string
+     */
+    protected $description;
 
     /**
      * @ORM\Column(type="string", length=128)
      * @var string
      */
-    protected $description = '';
-
-    /**
-     * @ORM\Column(type="integer")
-     * @var int
-     */
-    protected $private = 0;
-
-    /**
-     * @ORM\Column(type="string", length=128)
-     * @var string
-     */
-    protected  $path;
+    protected $path;
 
     /**
      * @ORM\ManyToOne(
@@ -95,10 +89,9 @@ class Photo extends AbstractEntityBase
             'id'            => $this->id,
             'name'          => $this->name,
             'description'   => $this->description,
-            'private'       => $this->private,
-            'storage_id'    => $this->storage->getId(),
-            'media'         => $this->getMeadiaId(),
+            'media'         => $this->getMediaId(),
             'author_id'     => $this->author,
+            'path'          => $this->path,
         ];
     }
 

@@ -53,20 +53,22 @@ class PhotoStorageService extends AbstractDefaultService
      * @param bool $flush
      * @return $this
      */
-    public function savePhotoStorage(PhotoStorage $ps, $flush = true)
+    public function savePhotoStorage(\Media\Entity\PhotoStorage\PhotoStorage $ps, $flush = true)
     {
         $this->getRepository()->save($ps, $flush);
-        return $this;
+        return $ps;
     }
 
     /**
      * @param $data
      * @return \Media\Entity\PhotoStorage\PhotoStorage
      */
-    public function createPhotoStorage($data)
+    public function createPhotoStorage($data = null)
     {
-        $photoStorage = $this->getServiceLocator()->get('Media\Entity\PhotoStorage\PhotoStorage');
-        $photoStorage->setData($data);
+        $photoStorage = $this->getServiceLocator()
+            ->get('Media\Entity\PhotoStorage\PhotoStorage');
+        $ps_namespace = get_class($photoStorage);
+        $photoStorage = new $ps_namespace($data);
 
         return $photoStorage;
     }
@@ -80,7 +82,8 @@ class PhotoStorageService extends AbstractDefaultService
         /**
          * @var $psService \Media\Entity\Photo\PhotoService
          */
-        $photoService = $this->getServiceLocator()->get('Media\Entity\Photo\PhotoService');
+        $photoService = $this->getServiceLocator()
+            ->get('Media\Entity\Photo\PhotoService');
         $photo = $photoService->createPhoto($data);
 
         return $photo;
