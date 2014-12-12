@@ -92,7 +92,7 @@ class PhotoStorage extends AbstractEntityBase
      */
     public function addItem(\Media\Entity\Photo\Photo $item)
     {
-        $item->setStorage($this);
+//        $item->setStorage($this);
         $this->items->add($item);
 
         return $this;

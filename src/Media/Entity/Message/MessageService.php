@@ -33,9 +33,12 @@ class MessageService extends AbstractDefaultService
      */
     public function getRepository()
     {
+        $entity = $this->getServiceLocator()->get('Media\Entity\Message\Message');
+        $namespace = get_class($entity);
+
         if($this->repository == null)
             $this->setRepository($this->getEntityManager()
-                ->getRepository('Media\Entity\Message\Message'));
+                ->getRepository($namespace));
 
         return $this->repository;
     }

@@ -59,19 +59,6 @@ class Photo extends AbstractEntityBase
     protected $storage;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Media\Entity\Media\Media")
-     *
-     * @var \Media\Entity\Media\Media
-     */
-    protected $media;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @var int
-     */
-    protected $author;
-
-    /**
      * @param null $data
      */
     public function __construct($data = null)
