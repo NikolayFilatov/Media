@@ -5,27 +5,44 @@
  */
 namespace Media\Entity\Message;
 
+use Base\Entity\AbstractEntityBase;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use DateTimeZone;
 
 /**
- * @ORM\Entity(repositoryClass="Media\Entity\Message\MessageRepository")
- * @ORM\Table(name="alt_message", options={"collate"="utf8_general_ci"})
+ * @ORM\MappedSuperclass
  *
  * @category    Media
  * @package     Alt
  */
-class Message extends MessageBase
+class MessageBase extends AbstractEntityBase
 {
     /**
-     * @ORM\ManyToOne(
-     *      targetEntity="Media\Entity\Media\Media",
-     *      inversedBy="messages"
-     * )
-     * @var \Media\Entity\Media\Media
+     * Protected entity properties
+     * @var array
      */
-    protected $alt_media;
+    protected $protectedProperties = ['id'];
+
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=4096, nullable=true)
+     * @var string
+     */
+    protected $message;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var datetime
+     */
+    protected $date;
 
 
     /**

@@ -57,7 +57,7 @@ class MessageService extends AbstractDefaultService
      * @param bool $flush
      * @return $this
      */
-    public function saveMessage(\Media\Entity\Message\Message $message, $flush = true)
+    public function saveMessage(\Media\Entity\Message\MessageBase $message, $flush = true)
     {
         $this->getRepository()->save($message, $flush);
         return $message;
@@ -68,7 +68,7 @@ class MessageService extends AbstractDefaultService
      * @param bool $flush
      * @return $this
      */
-    public function removeMessage(\Media\Entity\Message\Message $message, $flush = true)
+    public function removeMessage(\Media\Entity\Message\MessageBase $message, $flush = true)
     {
         $this->getRepository()->remove($message, $flush);
         return $this;
