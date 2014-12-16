@@ -54,7 +54,7 @@ class PhotoService extends AbstractDefaultService
      * @param bool $flush
      * @return $this
      */
-    public function savePhoto(\Media\Entity\Photo\Photo $photo, $flush = true)
+    public function savePhoto(\Media\Entity\Photo\PhotoBase $photo, $flush = true)
     {
         $this->getRepository()->save($photo, $flush);
         return $photo;
@@ -65,7 +65,7 @@ class PhotoService extends AbstractDefaultService
      * @param bool $flush
      * @return $this
      */
-    public function removePhoto(\Media\Entity\Photo\Photo $photo, $flush = true)
+    public function removePhoto(\Media\Entity\Photo\PhotoBase $photo, $flush = true)
     {
         $this->getRepository()->remove($photo, $flush);
         return $this;

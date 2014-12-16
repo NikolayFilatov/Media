@@ -47,9 +47,9 @@ class MediaBase extends AbstractEntityBase
      * @param PhotoStorage $photoStorage
      * @return $this
      */
-    public function addPhotoStorage(\Media\Entity\PhotoStorage\PhotoStorage $photoStorage)
+    public function addPhotoStorage(\Media\Entity\PhotoStorage\PhotoStorageBase $photoStorage)
     {
-//        $photoStorage->setMedia($this);
+        $photoStorage->setMedia($this);
         $this->photoStorage->add($photoStorage);
         return $this;
     }

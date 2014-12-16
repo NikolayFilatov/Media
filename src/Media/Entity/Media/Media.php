@@ -16,15 +16,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Media extends \Media\Entity\Media\MediaBase
 {
 
-//    /**
-//     * @ORM\OneToMany(
-//     *      targetEntity="Media\Entity\PhotoStorage\PhotoStorage",
-//     *      mappedBy="media",
-//     *      cascade={"persist", "remove"}
-//     * )
-//     * @var \Doctrine\Common\Collections\ArrayCollection
-//     */
-//    protected $photoStorage;
+    /**
+     * @ORM\OneToMany(
+     *      targetEntity="Media\Entity\PhotoStorage\PhotoStorage",
+     *      mappedBy="media",
+     *      cascade={"persist", "remove"}
+     * )
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $photoStorage;
 
     /**
      * @ORM\OneToMany(

@@ -54,7 +54,7 @@ class PhotoStorageService extends AbstractDefaultService
      * @return $this
      */
     public function savePhotoStorage(
-        \Media\Entity\PhotoStorage\PhotoStorage $photoStorage, $flush = true)
+        \Media\Entity\PhotoStorage\PhotoStorageBase $photoStorage, $flush = true)
     {
         $this->getRepository()->save($photoStorage, $flush);
         return $photoStorage;
