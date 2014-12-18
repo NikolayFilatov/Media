@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @category    Media
  * @package     Alt
  */
-class PhotoStorage extends PhotoStorageBase
+class PhotoStorage extends \Media\Entity\PhotoStorage\PhotoStorageBase
 {
     /**
      * @ORM\OneToOne(targetEntity="Media\Entity\Photo\Photo")
@@ -100,7 +100,6 @@ class PhotoStorage extends PhotoStorageBase
             'private'       => $this->private,
             'cover'         => $this->getCoverArray(),
             'items'         => $this->getItemsArray(),
-            'media_id'      => $this->media->getId(),
         ];
     }
 }

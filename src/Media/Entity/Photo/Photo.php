@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @category    Media
  * @package     Alt
  */
-class Photo extends PhotoBase
+class Photo extends \Media\Entity\Photo\PhotoBase
 {
     /**
      * @ORM\ManyToOne(
@@ -25,4 +25,13 @@ class Photo extends PhotoBase
      * @var \Media\Entity\PhotoStorage\PhotoStorage
      */
     protected $storage;
+
+    /**
+     * @param null $data
+     */
+    public function __construct($data = null)
+    {
+        // populate instance with provided data
+        return parent::__construct($data);
+    }
 }

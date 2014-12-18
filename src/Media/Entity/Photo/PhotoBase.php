@@ -48,16 +48,6 @@ class PhotoBase extends AbstractEntityBase
      */
     protected $path;
 
-
-    /**
-     * @param null $data
-     */
-    public function __construct($data = null)
-    {
-        // populate instance with provided data
-        return parent::__construct($data);
-    }
-
     /**
      * @return array
      */

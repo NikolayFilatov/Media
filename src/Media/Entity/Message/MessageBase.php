@@ -44,17 +44,6 @@ class MessageBase extends AbstractEntityBase
      */
     protected $date;
 
-
-    /**
-     * @param null $data
-     */
-    public function __construct($data = null)
-    {
-        $this->date = new DateTime('now', new \DateTimeZone('MSK'));
-
-        return parent::__construct($data);
-    }
-
     /**
      * @return array
      */

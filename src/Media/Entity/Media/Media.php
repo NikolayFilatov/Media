@@ -15,7 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Media extends \Media\Entity\Media\MediaBase
 {
-
     /**
      * @ORM\OneToMany(
      *      targetEntity="Media\Entity\PhotoStorage\PhotoStorage",
@@ -35,4 +34,15 @@ class Media extends \Media\Entity\Media\MediaBase
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $alt_messages;
+
+    /**
+     * @param null $data
+     */
+    public function __construct($data = null)
+    {
+        $this->photoStorage = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+
+        return parent::__construct($data);
+    }
 }

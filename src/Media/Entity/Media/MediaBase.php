@@ -32,16 +32,6 @@ class MediaBase extends AbstractEntityBase
      */
     protected $id;
 
-    /**
-     * @param null $data
-     */
-    public function __construct($data = null)
-    {
-        $this->photoStorage = new ArrayCollection();
-        $this->messages = new ArrayCollection();
-
-        return parent::__construct($data);
-    }
 
     /**
      * @param PhotoStorage $photoStorage
@@ -77,14 +67,6 @@ class MediaBase extends AbstractEntityBase
             $ret[] = $message->toArray();
 
         return $ret;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getPhotoStorage()
-    {
-        return $this->photoStorage;
     }
 
     /**
