@@ -46,7 +46,6 @@ class Message extends MessageBase
         return [
             'id'            => $this->id,
             'message'       => $this->message,
-            'media_id'      => $this->media->getId(),
             'date'          => $this->date->format('d.m.Y'),
         ];
     }

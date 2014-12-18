@@ -87,4 +87,13 @@ class MessageService extends AbstractDefaultService
         return $this->saveMessage($message);
     }
 
+    /**
+     * @param $id
+     * @return null|object
+     */
+    public function getMessageById($id)
+    {
+        return $this->getRepository()->find($id);
+    }
+
 } //end class here
