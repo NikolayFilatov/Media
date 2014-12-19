@@ -33,8 +33,11 @@ class MediaService extends AbstractDefaultService
     public function getRepository()
     {
         if($this->repository == null)
+        {
+            $repository = $this->getServiceLocator()->get('Media\Entity\Media\Media');
             $this->setRepository($this->getEntityManager()
-                 ->getRepository('\Media\Entity\Media\Media'));
+                ->getRepository(get_class($repository)));
+        }
 
         return $this->repository;
     }

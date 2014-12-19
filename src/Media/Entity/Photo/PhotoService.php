@@ -34,8 +34,11 @@ class PhotoService extends AbstractDefaultService
     public function getRepository()
     {
         if($this->repository == null)
+        {
+            $repository = $this->getServiceLocator()->get('Media\Entity\Photo\Photo');
             $this->setRepository($this->getEntityManager()
-                ->getRepository('Media\Entity\Photo\Photo'));
+                ->getRepository(get_class($repository)));
+        }
 
         return $this->repository;
     }
