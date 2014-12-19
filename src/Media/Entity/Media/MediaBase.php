@@ -16,7 +16,7 @@ use Media\Entity\PhotoStorage\PhotoStorage;
  * @category    Media
  * @package     Alt
  */
-class MediaBase extends AbstractEntityBase
+abstract class MediaBase extends AbstractEntityBase
 {
     /**
      * Protected entity properties
@@ -32,17 +32,21 @@ class MediaBase extends AbstractEntityBase
      */
     protected $id;
 
+    /**
+     * Function for add photo storage to media entity
+     *
+     * @param \Media\Entity\PhotoStorage\PhotoStorageBase $photoStorage
+     * @return mixed
+     */
+    abstract public function addPhotoStorage(\Media\Entity\PhotoStorage\PhotoStorageBase $photoStorage);
 
     /**
-     * @param PhotoStorage $photoStorage
-     * @return $this
+     * Function for set message to media entity
+     *
+     * @param \Media\Entity\Message\MessageBase $message
+     * @return mixed
      */
-    public function addPhotoStorage(\Media\Entity\PhotoStorage\PhotoStorageBase $photoStorage)
-    {
-        $photoStorage->setMedia($this);
-        $this->photoStorage->add($photoStorage);
-        return $this;
-    }
+    abstract public function addMessages(\Media\Entity\Message\MessageBase $message);
 
     /**
      * @return array

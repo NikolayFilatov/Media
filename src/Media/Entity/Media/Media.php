@@ -34,7 +34,7 @@ class Media extends \Media\Entity\Media\MediaBase
      * )
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
-    protected $alt_messages;
+    protected $messages;
 
     /**
      * @param null $data
@@ -45,5 +45,31 @@ class Media extends \Media\Entity\Media\MediaBase
         $this->messages = new ArrayCollection();
 
         return parent::__construct($data);
+    }
+
+    /**
+     * Function for add photo storage to media entity
+     *
+     * @param \Media\Entity\PhotoStorage\PhotoStorageBase $photoStorage
+     * @return mixed
+     */
+    public function addPhotoStorage(\Media\Entity\PhotoStorage\PhotoStorageBase $photoStorage)
+    {
+        $photoStorage->setMedia($this);
+        $this->photoStorage->add($photoStorage);
+        return $this;
+    }
+
+    /**
+     * Function for set message to media entity
+     *
+     * @param \Media\Entity\Message\MessageBase $message
+     * @return mixed
+     */
+    public function addMessages(\Media\Entity\Message\MessageBase $message)
+    {
+        $this->messages->add($message);
+        $message->setMedia($this);
+        return $this;
     }
 }

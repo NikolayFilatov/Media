@@ -6,7 +6,6 @@
 namespace Media\Entity\PhotoStorage;
 
 use Base\Entity\AbstractEntityBase;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @category    Media
  * @package     Alt
  */
-class PhotoStorageBase extends AbstractEntityBase
+abstract class PhotoStorageBase extends AbstractEntityBase
 {
     /**
      * Protected entity properties
@@ -61,4 +60,12 @@ class PhotoStorageBase extends AbstractEntityBase
             'private'       => $this->private,
         ];
     }
+
+    /**
+     * Function for set items to photo storage
+     *
+     * @param \Media\Entity\Photo\PhotoBase $item
+     * @return mixed
+     */
+    abstract public function addItems(\Media\Entity\Photo\PhotoBase $item);
 }

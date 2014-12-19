@@ -25,7 +25,7 @@ class Message extends MessageBase
      * )
      * @var \Media\Entity\Media\Media
      */
-    protected $alt_media;
+    protected $media;
 
 
     /**

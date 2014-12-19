@@ -54,18 +54,6 @@ class PhotoStorage extends \Media\Entity\PhotoStorage\PhotoStorageBase
     }
 
     /**
-     * @param \Media\Entity\Photo\Photo $item
-     * @return $this
-     */
-    public function addItem(\Media\Entity\Photo\PhotoBase $item)
-    {
-//        $item->setStorage($this);
-        $this->items->add($item);
-
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getCoverArray()
@@ -101,5 +89,19 @@ class PhotoStorage extends \Media\Entity\PhotoStorage\PhotoStorageBase
             'cover'         => $this->getCoverArray(),
             'items'         => $this->getItemsArray(),
         ];
+    }
+
+    /**
+     * Function for set items to photo storage
+     *
+     * @param \Media\Entity\Photo\PhotoBase $item
+     * @return mixed
+     */
+    public function addItems(\Media\Entity\Photo\PhotoBase $item)
+    {
+        $item->setStorage($this);
+        $this->items->add($item);
+
+        return $this;
     }
 }

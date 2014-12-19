@@ -50,6 +50,8 @@ class MessageService extends AbstractDefaultService
     public function setRepository(\Base\Service\AbstractDefaultRepository $repository)
     {
         $this->repository = $repository;
+
+        return $this;
     }
 
     /**
