@@ -86,4 +86,15 @@ class PhotoService extends AbstractDefaultService
         return $this->savePhoto($photo);
     }
 
+    /**
+     * function for remove photo
+     *
+     * @param $id
+     * @return null|object
+     */
+    public function getPhotoById($id)
+    {
+        return $this->getRepository()->find((int)$id);
+    }
+
 } //end class here

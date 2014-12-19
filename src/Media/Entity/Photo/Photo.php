@@ -9,7 +9,7 @@ use Base\Entity\AbstractEntityBase;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Media\Entity\PhotoStorage\PhotoStorageRepository")
+ * @ORM\Entity(repositoryClass="Media\Entity\Photo\PhotoRepository")
  * @ORM\Table(name="alt_photo", options={"collate"="utf8_general_ci"})
  *
  * @category    Media
