@@ -90,14 +90,14 @@ class PhotoService extends AbstractDefaultService
     }
 
     /**
-     * function for remove photo
+     * Function for get photo entity by id
      *
      * @param $id
      * @return null|object
      */
     public function getPhotoById($id)
     {
-        return $this->getRepository()->find((int)$id);
+        return $this->getRepository()->getEntityById($id);
     }
 
-} //end class here
+}

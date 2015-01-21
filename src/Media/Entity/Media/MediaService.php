@@ -92,10 +92,11 @@ class MediaService extends AbstractDefaultService
      * Function for get media by id
      *
      * @param $id
+     * @return mixed
      */
     public function getMediaById($id)
     {
-        return $this->getRepository()->getMediaById($id);
+        return $this->getRepository()->getEntityById($id);
     }
 
 }

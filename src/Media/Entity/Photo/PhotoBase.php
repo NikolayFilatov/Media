@@ -47,17 +47,4 @@ class PhotoBase extends AbstractEntityBase
      * @var string
      */
     protected $path;
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return [
-            'id'            => $this->id,
-            'name'          => $this->name,
-            'description'   => $this->description,
-            'path'          => $this->path,
-        ];
-    }
 }

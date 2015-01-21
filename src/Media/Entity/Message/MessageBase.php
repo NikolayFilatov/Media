@@ -43,16 +43,4 @@ class MessageBase extends AbstractEntityBase
      * @var datetime
      */
     protected $date;
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return [
-            'id'            => $this->id,
-            'message'       => $this->message,
-            'date'          => $this->date->format('d.m.Y'),
-        ];
-    }
 }

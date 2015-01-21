@@ -90,12 +90,14 @@ class MessageService extends AbstractDefaultService
     }
 
     /**
+     * Function for get message entity by id
+     *
      * @param $id
      * @return null|object
      */
     public function getMessageById($id)
     {
-        return $this->getRepository()->find($id);
+        return $this->getRepository()->getEntityById($id);
     }
 
-} //end class here
+}

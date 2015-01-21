@@ -112,5 +112,4 @@ class PhotoStorageService extends AbstractDefaultService
 
         return $photo;
     }
-
-} //end class here
+}

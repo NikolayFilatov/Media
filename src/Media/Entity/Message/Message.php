@@ -27,7 +27,6 @@ class Message extends MessageBase
      */
     protected $media;
 
-
     /**
      * @param null $data
      */
@@ -36,17 +35,5 @@ class Message extends MessageBase
         $this->date = new DateTime('now', new \DateTimeZone('MSK'));
 
         return parent::__construct($data);
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return [
-            'id'            => $this->id,
-            'message'       => $this->message,
-            'date'          => $this->date->format('d.m.Y'),
-        ];
     }
 }

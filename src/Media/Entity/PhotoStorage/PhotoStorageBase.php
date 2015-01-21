@@ -49,19 +49,6 @@ abstract class PhotoStorageBase extends AbstractEntityBase
     protected $private = 0;
 
     /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return [
-            'id'            => $this->id,
-            'name'          => $this->name,
-            'description'   => $this->description,
-            'private'       => $this->private,
-        ];
-    }
-
-    /**
      * Function for set items to photo storage
      *
      * @param \Media\Entity\Photo\PhotoBase $item
