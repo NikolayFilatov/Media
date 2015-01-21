@@ -43,4 +43,19 @@ class MediaRepository extends AbstractDefaultRepository {
 
         return $this;
     }
+
+    /**
+     * Function for get media by id
+     *
+     * @param $id
+     * @return \Doctrine\ORM\Query
+     */
+    public function getMediaById($id)
+    {
+        $query = $this->_em
+            ->createQuery("select u from $this->_entityName u where u.id=" . (int)$id);
+
+        return $query->getSingleResult();
+    }
+
 }
